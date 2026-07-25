@@ -341,6 +341,9 @@ The AI engine provides:
 - Personalized advice
 
 ---
+# Deployed Link 
+https://subsence-ai.onrender.com/
+
 
 # 🎯 User Journey
 
