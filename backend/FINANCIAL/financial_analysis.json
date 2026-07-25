@@ -207,5 +207,38 @@
         "current_yearly_spending": 679.68,
         "projected_yearly_spending": 713.66,
         "assumed_growth_rate": "5%"
-    }
+    },
+    "ai_recommendations": [
+        {
+            "priority": "High",
+            "merchant": "Adobe",
+            "recommendation": "Adobe is one of your most expensive subscriptions. Consider downgrading or cancelling it if you don't use it regularly.",
+            "potential_monthly_saving": 29.99,
+            "confidence": "High"
+        },
+        {
+            "priority": "Medium",
+            "merchant": "Netflix",
+            "recommendation": "Netflix increased its price by 12.51%. Review your plan before renewal.",
+            "confidence": "Medium"
+        },
+        {
+            "priority": "Low",
+            "merchant": "Netflix",
+            "recommendation": "Your next payment of 17.99 is due on 2025-04-04.",
+            "confidence": "High"
+        },
+        {
+            "priority": "Low",
+            "merchant": "Spotify",
+            "recommendation": "Your next payment of 9.99 is due on 2025-04-09.",
+            "confidence": "High"
+        },
+        {
+            "priority": "Low",
+            "merchant": "Adobe",
+            "recommendation": "Your next payment of 29.99 is due on 2025-04-14.",
+            "confidence": "High"
+        }
+    ]
 }
