@@ -1,0 +1,29 @@
+{
+  "mappings": {
+    "netflix": ["subscription", "streaming", "entertainment"],
+    "prime video": ["subscription", "streaming", "entertainment"],
+    "spotify": ["subscription", "streaming", "music"],
+    "swiggy": ["food", "delivery", "restaurant"],
+    "zomato": ["food", "delivery", "restaurant"],
+    "starbucks": ["coffee", "food", "beverages"],
+    "amazon": ["shopping", "ecommerce"],
+    "flipkart": ["shopping", "ecommerce"],
+    "uber": ["travel", "taxi", "ride-sharing"],
+    "ola": ["travel", "taxi", "ride-sharing"],
+    "airbnb": ["travel", "lodging", "hotel"]
+  },
+  "keyword_mappings": {
+    "streaming": ["streaming"],
+    "subscription": ["subscription"],
+    "delivery": ["delivery"],
+    "shopping": ["shopping"],
+    "restaurant": ["restaurant"],
+    "bill": ["utilities"],
+    "electricity": ["utilities"],
+    "broadband": ["utilities"],
+    "internet": ["utilities"],
+    "travel": ["travel"],
+    "flight": ["travel"],
+    "hotel": ["travel"]
+  }
+}
