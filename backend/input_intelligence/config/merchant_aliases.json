@@ -1,0 +1,26 @@
+{
+  "Netflix": [
+    "Netflix India",
+    "NETFLIX",
+    "Netflix.com",
+    "Netflix Entertainment",
+    "Netflix App"
+  ],
+  "Spotify": [
+    "Spotify Premium",
+    "Spotify USA",
+    "Spotify.com"
+  ],
+  "Amazon": [
+    "Amazon Web Services",
+    "AWS",
+    "Amazon.co.in",
+    "Amazon Pay",
+    "Amazon.com"
+  ],
+  "Swiggy": [
+    "Swiggy India",
+    "Swiggy Food",
+    "Swiggy Delivery"
+  ]
+}
