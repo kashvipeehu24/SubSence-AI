@@ -16,6 +16,7 @@ from renewal_predictor import predict_subscription_renewals
 from trial_detector import detect_free_trial_conversion
 from anomaly_detector import detect_transaction_anomalies
 from unused_subscription_detector import detect_unused_subscriptions
+from ai_recommendation_engine import generate_ai_recommendations
 
 
 def run_financial_intelligence(transactions):
@@ -116,6 +117,15 @@ def run_financial_intelligence(transactions):
     )
 
     unused = detect_unused_subscriptions(transactions)
+
+    ai_recommendations = generate_ai_recommendations(
+        expensive,
+        price_hikes,
+        duplicates,
+        unused,
+        free_trial_conversions,
+        renewals
+    )
 
     # -----------------------------
     # Financial Risks
@@ -224,7 +234,9 @@ def run_financial_intelligence(transactions):
 
 
         "future_projection":
-            future
+            future,
+
+        "ai_recommendations": ai_recommendations
     }
 
 
