@@ -1,0 +1,57 @@
+{
+  "transactions": [
+    {
+      "transaction_id": "TXN001",
+      "merchant": "Netflix India",
+      "normalized_merchant": "Netflix",
+      "amount": 649,
+      "currency": "INR",
+      "transaction_type": "Debit",
+      "date": "2026-07-15",
+      "category": "Video Streaming",
+      "description": "Netflix Monthly Subscription",
+      "source": "Bank Statement",
+      "confidence_score": 0.99,
+      "is_recurring_candidate": true,
+      "tags": [
+        "subscription",
+        "streaming"
+      ]
+    },
+    {
+      "transaction_id": "TXN002",
+      "merchant": "Spotify",
+      "normalized_merchant": "Spotify",
+      "amount": 119,
+      "currency": "INR",
+      "transaction_type": "Debit",
+      "date": "2026-07-18",
+      "category": "Music",
+      "description": "Spotify Premium",
+      "source": "SMS",
+      "confidence_score": 0.98,
+      "is_recurring_candidate": true,
+      "tags": [
+        "subscription",
+        "music"
+      ]
+    },
+    {
+      "transaction_id": "TXN003",
+      "merchant": "Amazon",
+      "normalized_merchant": "Amazon",
+      "amount": 2499,
+      "currency": "INR",
+      "transaction_type": "Debit",
+      "date": "2026-07-20",
+      "category": "Shopping",
+      "description": "Amazon Order",
+      "source": "Email",
+      "confidence_score": 0.97,
+      "is_recurring_candidate": false,
+      "tags": [
+        "shopping"
+      ]
+    }
+  ]
+}

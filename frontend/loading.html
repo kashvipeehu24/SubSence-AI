@@ -8,10 +8,19 @@
     <style>
       :root {
         --bg: #07111f;
-        --text: #f4f7fb;
-        --muted: #92a7c0;
+        --panel: #0f172a;
+        --card: #111c2f;
+        --card-strong: #14233c;
+        --text: #ffffff;
+        --heading: #f8fafc;
+        --body: #e5e7eb;
+        --secondary: #cbd5e1;
+        --muted: #bfc8d4;
+        --disabled: #94a3b8;
         --accent: #4f8cff;
         --accent-2: #63e4c0;
+        --border: #23374b;
+        --shadow: #030712;
       }
 
       body {
@@ -19,7 +28,7 @@
         min-height: 100vh;
         font-family: Inter, "Segoe UI", Roboto, sans-serif;
         background: linear-gradient(135deg, #07111f, #101d33);
-        color: var(--text);
+        color: var(--body);
         display: grid;
         place-items: center;
         padding: 24px;
@@ -27,12 +36,16 @@
 
       .loading-card {
         width: min(100%, 560px);
-        background: rgba(15, 27, 45, 0.9);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 24px;
         padding: 2.2rem;
         text-align: center;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 20px 60px var(--shadow);
+      }
+
+      .loading-card h2 {
+        color: var(--heading);
       }
 
       .spinner {
@@ -40,14 +53,14 @@
         height: 56px;
         margin: 0 auto;
         border-radius: 50%;
-        border: 4px solid rgba(255,255,255,0.12);
+        border: 4px solid #23374b;
         border-top-color: var(--accent-2);
         animation: spin 0.9s linear infinite;
       }
 
       .progress {
         height: 10px;
-        background: rgba(255,255,255,0.08);
+        background: #23374b;
         border-radius: 999px;
         overflow: hidden;
       }
@@ -60,7 +73,7 @@
       }
 
       .text-muted {
-        color: var(--muted);
+        color: var(--secondary);
       }
 
       @keyframes spin {
@@ -71,12 +84,12 @@
     </style>
   </head>
   <body>
-    <div class="loading-card">
-      <div class="spinner"></div>
+<div class="loading-card" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
       <h2 class="fw-bold mt-4">Analyzing your financial activity</h2>
       <p class="text-muted" id="loadingMessage">Preparing your report...</p>
 
-      <div class="progress mt-4">
+      <div class="progress mt-4" aria-label="Analysis progress">
         <div id="progressBar" class="progress-bar"></div>
       </div>
 

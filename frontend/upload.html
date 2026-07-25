@@ -11,52 +11,76 @@
     <style>
       :root {
         --bg: #07111f;
-        --panel: #0f1b2d;
-        --text: #f4f7fb;
-        --muted: #92a7c0;
+        --panel: #0f172a;
+        --card: #111c2f;
+        --card-strong: #14233c;
+        --text: #ffffff;
+        --heading: #f8fafc;
+        --body: #e5e7eb;
+        --secondary: #cbd5e1;
+        --muted: #bfc8d4;
+        --disabled: #94a3b8;
         --accent: #4f8cff;
         --accent-2: #63e4c0;
+        --border: #23374b;
+        --border-strong: #2f4864;
+        --shadow: #030712;
       }
 
       body {
         margin: 0;
         font-family: Inter, "Segoe UI", Roboto, sans-serif;
         background: linear-gradient(135deg, #07111f, #101d33);
-        color: var(--text);
+        color: var(--body);
         min-height: 100vh;
+        line-height: 1.6;
       }
 
       .navbar {
-        background: rgba(7, 17, 31, 0.8);
+        background: #081524;
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .navbar-brand,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: var(--heading);
       }
 
       .upload-card {
-        background: rgba(15, 27, 45, 0.85);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 22px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 20px 60px var(--shadow);
       }
 
       .drop-zone {
-        border: 2px dashed rgba(99, 228, 192, 0.35);
+        border: 2px dashed var(--accent-2);
         border-radius: 18px;
         padding: 2rem;
         text-align: center;
-        background: rgba(255,255,255,0.03);
+        background: var(--card-strong);
         cursor: pointer;
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
       }
 
-      .drop-zone:hover {
-        background: rgba(99, 228, 192, 0.08);
+      .drop-zone:hover,
+      .drop-zone:focus-within {
+        background: #18364d;
+        border-color: var(--accent-2);
+        transform: translateY(-1px);
       }
 
       .badge-pill {
         display: inline-block;
         padding: 0.45rem 0.8rem;
-        background: rgba(99, 228, 192, 0.12);
-        color: var(--accent-2);
+        background: #12372f;
+        color: #f5fff9;
+        border: 1px solid #20553c;
         border-radius: 999px;
         font-size: 0.8rem;
         font-weight: 600;
@@ -67,17 +91,50 @@
         border: none;
       }
 
+      .btn-primary:disabled {
+        opacity: 1;
+        cursor: wait;
+      }
+
       .file-preview {
         border-radius: 12px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card-strong);
+        border: 1px solid var(--border);
         padding: 0.85rem 1rem;
-        color: var(--muted);
+        color: var(--body);
+        min-height: 3.25rem;
+        overflow-wrap: anywhere;
       }
 
       .feature-list li {
         margin-bottom: 0.65rem;
-        color: var(--muted);
+        color: var(--secondary);
+      }
+
+      .status-message {
+        min-height: 1.5rem;
+        font-size: 0.95rem;
+        color: var(--secondary);
+      }
+
+      .form-control {
+        background: #0f172a;
+        color: var(--body);
+        border: 1px solid var(--border);
+      }
+
+      .form-control::placeholder {
+        color: var(--disabled);
+      }
+
+      @media (max-width: 768px) {
+        .drop-zone {
+          padding: 1.4rem;
+        }
+
+        .btn-lg {
+          width: 100%;
+        }
       }
     </style>
   </head>
@@ -99,19 +156,21 @@
               Use statements, CSV files, or financial exports to start your AI-powered analysis.
             </p>
 
-            <div class="drop-zone mt-4">
+            <div class="drop-zone mt-4" tabindex="0">
               <div class="mb-3" style="font-size: 2rem;">⬆️</div>
               <h4 class="fw-semibold">Drag & drop your files here</h4>
-              <p class="text-muted mb-3">CSV, PDF, or text files from your bank or finance apps</p>
-              <input type="file" class="form-control" id="fileInput" />
+              <p class="text-muted mb-3">CSV, JSON, PDF, or text files from your bank or finance apps</p>
+              <label class="visually-hidden" for="fileInput">Choose a financial file</label>
+              <input type="file" class="form-control" id="fileInput" accept=".csv,.json,.pdf,.txt,.eml" aria-describedby="selectedFile" />
             </div>
 
             <div class="mt-3">
               <p class="small text-muted mb-2">Selected file</p>
-              <div class="file-preview" id="selectedFile">No file selected yet.</div>
+              <div class="file-preview" id="selectedFile" role="status" aria-live="polite">No file selected yet.</div>
+              <div class="status-message mt-2" id="statusMessage" aria-live="polite">Supported formats: CSV, JSON, PDF, TXT, and EML.</div>
             </div>
 
-            <button class="btn btn-primary btn-lg mt-4">Run AI Analysis</button>
+            <button class="btn btn-primary btn-lg mt-4" type="button">Run AI Analysis</button>
           </div>
         </div>
 
@@ -125,7 +184,7 @@
               <li>• Unnecessary monthly or annual spending</li>
             </ul>
 
-            <div class="mt-4 p-3 rounded" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+            <div class="mt-4 p-3 rounded" style="background: #14233c; border: 1px solid #23374b;">
               <strong>Tip:</strong>
               <p class="text-muted mb-0 mt-2">Upload a sample transaction file or statement to preview the experience.</p>
             </div>
@@ -137,10 +196,73 @@
     <script>
       const fileInput = document.getElementById('fileInput');
       const selectedFile = document.getElementById('selectedFile');
+      const statusMessage = document.getElementById('statusMessage');
+      const submitButton = document.querySelector('button.btn-primary');
+
+      let selectedFileData = null;
+
+      const setStatus = (message, isError = false) => {
+        selectedFile.textContent = message;
+        selectedFile.style.color = isError ? '#ffb4b4' : 'var(--body)';
+      };
 
       fileInput.addEventListener('change', function () {
-        const file = this.files[0];
-        selectedFile.textContent = file ? file.name : 'No file selected yet.';
+        selectedFileData = this.files[0] || null;
+        if (selectedFileData) {
+          const extension = selectedFileData.name.split('.').pop()?.toLowerCase();
+          const supported = ['csv', 'json', 'pdf', 'txt', 'eml'].includes(extension || '');
+          setStatus(selectedFileData.name);
+          statusMessage.textContent = supported
+            ? 'File ready. Review the details and start the analysis.'
+            : 'This file type is not listed as supported. You can still try it, but the server may reject it.';
+        } else {
+          setStatus('No file selected yet.');
+          statusMessage.textContent = 'Supported formats: CSV, JSON, PDF, TXT, and EML.';
+        }
+      });
+
+      submitButton.addEventListener('click', async function () {
+        if (!selectedFileData) {
+          setStatus('Please select a file first.', true);
+          statusMessage.textContent = 'Choose a supported transaction file to continue.';
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', selectedFileData);
+
+        setStatus('Uploading your file…');
+        statusMessage.textContent = 'Preparing the analysis. This usually takes a moment.';
+        submitButton.disabled = true;
+        submitButton.textContent = 'Uploading…';
+
+        try {
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+          });
+
+          let payload = null;
+          try {
+            payload = await response.json();
+          } catch (error) {
+            payload = null;
+          }
+
+          if (!response.ok) {
+            throw new Error(payload?.error || 'Upload failed. Please try again.');
+          }
+
+          localStorage.setItem('subsense-analysis-id', payload.analysis_id);
+          setStatus(`Upload complete: ${payload.file_name}`);
+          statusMessage.textContent = 'Redirecting to your dashboard…';
+          window.location.href = 'dashboard.html';
+        } catch (error) {
+          setStatus(error.message || 'Upload failed.', true);
+          statusMessage.textContent = 'Please verify the file and try again.';
+          submitButton.disabled = false;
+          submitButton.textContent = 'Run AI Analysis';
+        }
       });
     </script>
   </body>

@@ -1,10 +1,18 @@
 :root {
   --bg: #07111f;
-  --panel: #0f1b2d;
-  --text: #f4f7fb;
-  --muted: #92a7c0;
+  --panel: #0f172a;
+  --card: #111c2f;
+  --card-strong: #14233c;
+  --text: #ffffff;
+  --heading: #f8fafc;
+  --body: #e5e7eb;
+  --secondary: #cbd5e1;
+  --muted: #bfc8d4;
+  --disabled: #94a3b8;
   --accent: #4f8cff;
   --accent-2: #63e4c0;
+  --border: #23374b;
+  --border-strong: #2f4864;
   --danger: #ff6b6b;
 }
 
@@ -16,13 +24,26 @@ body {
   margin: 0;
   font-family: Inter, "Segoe UI", Roboto, sans-serif;
   background: linear-gradient(135deg, #07111f, #101d33);
-  color: var(--text);
+  color: var(--body);
 }
 
 .navbar {
-  background: rgba(7, 17, 31, 0.8);
+  background: #081524;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-brand,
+.hero h1,
+.hero h2,
+.hero h3,
+.hero h4,
+.hero h5,
+.feature-card h5,
+.workflow-card h5,
+.glass-card h4,
+.glass-card h3 {
+  color: var(--heading);
 }
 
 .hero {
@@ -36,7 +57,7 @@ body {
 }
 
 .hero .lead {
-  color: var(--muted);
+  color: var(--body);
   font-size: 1.08rem;
   max-width: 680px;
 }
@@ -44,8 +65,9 @@ body {
 .badge-pill {
   display: inline-block;
   padding: 0.45rem 0.8rem;
-  background: rgba(99, 228, 192, 0.12);
-  color: var(--accent-2);
+  background: #12372f;
+  color: #f5fff9;
+  border: 1px solid #20553c;
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -58,7 +80,8 @@ body {
 }
 
 .btn-outline-light {
-  border-color: rgba(255,255,255,0.2);
+  border-color: var(--border-strong);
+  color: var(--heading);
 }
 
 .glass-card,
@@ -67,10 +90,10 @@ body {
 .upload-card,
 .dashboard-card,
 .stat-card {
-  background: rgba(15, 27, 45, 0.85);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 60px #030712;
 }
 
 .feature-card,
@@ -93,8 +116,8 @@ body {
 .metric-box {
   padding: 1rem;
   border-radius: 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--card-strong);
+  border: 1px solid var(--border);
 }
 
 .upload-card {
@@ -102,19 +125,19 @@ body {
 }
 
 .drop-zone {
-  border: 2px dashed rgba(99, 228, 192, 0.35);
+  border: 2px dashed var(--accent-2);
   border-radius: 18px;
   padding: 2rem;
   text-align: center;
-  background: rgba(255,255,255,0.03);
+  background: var(--card-strong);
 }
 
 .file-preview {
   border-radius: 12px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--card-strong);
+  border: 1px solid var(--border);
   padding: 0.85rem 1rem;
-  color: var(--muted);
+  color: var(--body);
 }
 
 .stat-card {
@@ -128,9 +151,10 @@ body {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: conic-gradient(var(--accent-2) 84%, rgba(255,255,255,0.08) 0);
+  background: conic-gradient(var(--accent-2) 84%, #23374b 0);
   font-size: 1.6rem;
   font-weight: 700;
+  color: var(--heading);
 }
 
 .pill {
@@ -138,17 +162,23 @@ body {
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
   font-size: 0.8rem;
-  background: rgba(99, 228, 192, 0.14);
-  color: var(--accent-2);
+  background: #12372f;
+  color: #f5fff9;
 }
 
-.text-muted {
-  color: var(--muted);
+.text-muted,
+.feature-card p,
+.workflow-card p,
+.glass-card ul,
+.feature-list li,
+.status-message,
+.small {
+  color: var(--secondary);
 }
 
 .item-row {
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid var(--border);
 }
 
 .item-row:last-child {
@@ -156,9 +186,9 @@ body {
 }
 
 footer {
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid var(--border);
   padding: 20px 0;
-  color: var(--muted);
+  color: var(--secondary);
 }
 
 @media (max-width: 768px) {

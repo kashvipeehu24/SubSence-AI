@@ -1,0 +1,5 @@
+merchant,amount,date,description,currency,transaction_type
+Netflix,649,2026-07-15,Netflix monthly subscription,INR,Debit
+Spotify,119,2026-07-18,Spotify Premium,INR,Debit
+Amazon,2499,2026-07-20,Amazon order,INR,Debit
+YouTube Music,99,2026-07-21,YouTube Music plan,INR,Debit

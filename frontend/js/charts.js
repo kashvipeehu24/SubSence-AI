@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   line.setAttribute('stroke-linejoin', 'round');
 
   area.setAttribute('d', areaD);
-  area.setAttribute('fill', 'rgba(99, 228, 192, 0.16)');
+  area.setAttribute('fill', '#2a8f6d');
 
   svg.appendChild(area);
   svg.appendChild(line);

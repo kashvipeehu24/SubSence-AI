@@ -16,12 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   dropZone.addEventListener('dragleave', () => {
-    dropZone.style.borderColor = 'rgba(99, 228, 192, 0.35)';
+    dropZone.style.borderColor = '#63e4c0';
   });
 
   dropZone.addEventListener('drop', (event) => {
     event.preventDefault();
-    dropZone.style.borderColor = 'rgba(99, 228, 192, 0.35)';
+    dropZone.style.borderColor = '#63e4c0';
 
     const file = event.dataTransfer.files[0];
     if (file) {

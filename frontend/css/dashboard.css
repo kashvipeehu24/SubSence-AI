@@ -1,9 +1,9 @@
 .dashboard-card,
 .stat-card {
-  background: rgba(15, 27, 45, 0.85);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: #111c2f;
+  border: 1px solid #23374b;
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 60px #030712;
 }
 
 .stat-card {
@@ -17,9 +17,10 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: conic-gradient(#63e4c0 84%, rgba(255,255,255,0.08) 0);
+  background: conic-gradient(#63e4c0 84%, #23374b 0);
   font-size: 1.6rem;
   font-weight: 700;
+  color: #f8fafc;
 }
 
 .pill {
@@ -27,13 +28,13 @@
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
   font-size: 0.8rem;
-  background: rgba(99, 228, 192, 0.14);
-  color: #63e4c0;
+  background: #12372f;
+  color: #f5fff9;
 }
 
 .item-row {
   padding: 0.8rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid #23374b;
 }
 
 .item-row:last-child {

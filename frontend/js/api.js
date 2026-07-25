@@ -80,10 +80,11 @@
   }
 
   function formatCurrency(value) {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IN', {
       style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
+      currency: 'INR',
+      maximumFractionDigits: 0,
+      currencyDisplay: 'narrowSymbol'
     }).format(value);
   }
 

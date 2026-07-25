@@ -15,24 +15,58 @@
     <style>
       :root {
         --bg: #07111f;
-        --panel: #0f1b2d;
-        --text: #f4f7fb;
-        --muted: #92a7c0;
+        --panel: #0f172a;
+        --card: #111c2f;
+        --card-strong: #14233c;
+        --text: #ffffff;
+        --heading: #f8fafc;
+        --body: #e5e7eb;
+        --secondary: #cbd5e1;
+        --muted: #bfc8d4;
+        --disabled: #94a3b8;
         --accent: #4f8cff;
         --accent-2: #63e4c0;
+        --border: #23374b;
+        --border-strong: #2f4864;
+        --shadow: #030712;
       }
 
       body {
         margin: 0;
         font-family: Inter, "Segoe UI", Roboto, sans-serif;
         background: linear-gradient(135deg, #07111f, #101d33);
-        color: var(--text);
+        color: var(--body);
+        line-height: 1.6;
       }
 
       .navbar {
-        background: rgba(7, 17, 31, 0.8);
+        background: #081524;
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .navbar-brand,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: var(--heading);
+      }
+
+      .btn {
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px var(--shadow);
+      }
+
+      .btn:focus-visible {
+        outline: 2px solid var(--accent-2);
+        outline-offset: 2px;
       }
 
       .hero {
@@ -46,7 +80,7 @@
       }
 
       .hero .lead {
-        color: var(--muted);
+        color: var(--body);
         font-size: 1.08rem;
         max-width: 680px;
       }
@@ -54,8 +88,9 @@
       .badge-pill {
         display: inline-block;
         padding: 0.45rem 0.8rem;
-        background: rgba(99, 228, 192, 0.12);
-        color: var(--accent-2);
+        background: #12372f;
+        color: #f5fff9;
+        border: 1px solid #20553c;
         border-radius: 999px;
         font-size: 0.8rem;
         font-weight: 600;
@@ -68,23 +103,32 @@
       }
 
       .btn-outline-light {
-        border-color: rgba(255,255,255,0.2);
+        border-color: var(--border-strong);
+        color: var(--heading);
       }
 
       .glass-card {
-        background: rgba(15, 27, 45, 0.85);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 20px 60px var(--shadow);
       }
 
       .feature-card,
       .workflow-card {
-        background: rgba(15, 27, 45, 0.72);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-radius: 18px;
         padding: 1.4rem;
         height: 100%;
+      }
+
+      .feature-card p,
+      .workflow-card p,
+      .glass-card ul,
+      .text-muted,
+      .metric-box small {
+        color: var(--secondary) !important;
       }
 
       .feature-icon {
@@ -101,19 +145,28 @@
       .metric-box {
         padding: 1rem;
         border-radius: 16px;
-        background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.06);
+        background: var(--card-strong);
+        border: 1px solid var(--border);
       }
 
       footer {
-        border-top: 1px solid rgba(255,255,255,0.08);
+        border-top: 1px solid var(--border);
         padding: 20px 0;
-        color: var(--muted);
+        color: var(--secondary);
       }
 
       @media (max-width: 768px) {
         .hero {
           padding-top: 60px;
+        }
+
+        .hero .d-flex.flex-wrap {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .hero .btn-lg {
+          width: 100%;
         }
       }
     </style>
@@ -121,7 +174,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">SubSense AI</a>
+        <a class="navbar-brand fw-bold" href="index.html">SubSense AI</a>
         <div class="d-flex gap-2">
           <a class="btn btn-outline-light btn-sm" href="upload.html">Analyze</a>
           <a class="btn btn-primary btn-sm" href="dashboard.html">View Dashboard</a>
@@ -152,7 +205,7 @@
               </div>
               <div class="col-sm-4">
                 <div class="metric-box">
-                  <h4 class="mb-1">$1.2K</h4>
+                  <h4 class="mb-1">₹1.2K</h4>
                   <small class="text-muted">Potential Savings</small>
                 </div>
               </div>

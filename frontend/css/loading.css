@@ -8,12 +8,12 @@
 
 .loading-card {
   width: min(100%, 560px);
-  background: rgba(15, 27, 45, 0.9);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: #111c2f;
+  border: 1px solid #23374b;
   border-radius: 24px;
   padding: 2.2rem;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 60px #030712;
 }
 
 .spinner {
@@ -21,14 +21,14 @@
   height: 56px;
   margin: 0 auto;
   border-radius: 50%;
-  border: 4px solid rgba(255,255,255,0.12);
+  border: 4px solid #23374b;
   border-top-color: #63e4c0;
   animation: spin 0.9s linear infinite;
 }
 
 .progress {
   height: 10px;
-  background: rgba(255,255,255,0.08);
+  background: #23374b;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -41,7 +41,7 @@
 }
 
 .text-muted {
-  color: #92a7c0;
+  color: #cbd5e1;
 }
 
 @keyframes spin {
