@@ -1,4 +1,12 @@
 # 🚀 SubSence AI
+[![Build](https://github.com/kashvipeehu24/SubSence-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/kashvipeehu24/SubSence-AI/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/kashvipeehu24/SubSence-AI)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-Backend-black?logo=flask)](https://flask.palletsprojects.com/)
+[![Last Commit](https://img.shields.io/github/last-commit/kashvipeehu24/SubSence-AI)](https://github.com/kashvipeehu24/SubSence-AI/commits/main)
+[![Issues](https://img.shields.io/github/issues/kashvipeehu24/SubSence-AI)](https://github.com/kashvipeehu24/SubSence-AI/issues)
+[![Forks](https://img.shields.io/github/forks/kashvipeehu24/SubSence-AI)](https://github.com/kashvipeehu24/SubSence-AI/network/members)
+[![Stars](https://img.shields.io/github/stars/kashvipeehu24/SubSence-AI)](https://github.com/kashvipeehu24/SubSence-AI/stargazers)
 ### AI-Powered Subscription Intelligence Platform
 
 SubSence AI is an intelligent financial assistant that analyzes bank statements, detects subscriptions, identifies duplicate services, discovers hidden price hikes, and provides AI-powered recommendations to reduce unnecessary spending.
@@ -333,6 +341,9 @@ The AI engine provides:
 - Personalized advice
 
 ---
+# Deployed Link 
+https://subsence-ai.onrender.com/
+
 
 # 🎯 User Journey
 
