@@ -1,0 +1,174 @@
+:root {
+  --bg: #07111f;
+  --panel: #0f1b2d;
+  --text: #f4f7fb;
+  --muted: #92a7c0;
+  --accent: #4f8cff;
+  --accent-2: #63e4c0;
+  --danger: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #07111f, #101d33);
+  color: var(--text);
+}
+
+.navbar {
+  background: rgba(7, 17, 31, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.hero {
+  padding: 90px 0 60px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.hero .lead {
+  color: var(--muted);
+  font-size: 1.08rem;
+  max-width: 680px;
+}
+
+.badge-pill {
+  display: inline-block;
+  padding: 0.45rem 0.8rem;
+  background: rgba(99, 228, 192, 0.12);
+  color: var(--accent-2);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #6f8fff);
+  border: none;
+}
+
+.btn-outline-light {
+  border-color: rgba(255,255,255,0.2);
+}
+
+.glass-card,
+.feature-card,
+.workflow-card,
+.upload-card,
+.dashboard-card,
+.stat-card {
+  background: rgba(15, 27, 45, 0.85);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.feature-card,
+.workflow-card {
+  padding: 1.4rem;
+  height: 100%;
+}
+
+.feature-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  font-size: 1.2rem;
+  margin-bottom: 0.9rem;
+}
+
+.metric-box {
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.upload-card {
+  padding: 1.5rem;
+}
+
+.drop-zone {
+  border: 2px dashed rgba(99, 228, 192, 0.35);
+  border-radius: 18px;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+}
+
+.file-preview {
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.85rem 1rem;
+  color: var(--muted);
+}
+
+.stat-card {
+  padding: 1.2rem;
+}
+
+.health-ring {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--accent-2) 84%, rgba(255,255,255,0.08) 0);
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(99, 228, 192, 0.14);
+  color: var(--accent-2);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.item-row {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.item-row:last-child {
+  border-bottom: none;
+}
+
+footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 0;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 60px;
+  }
+
+  .health-ring {
+    width: 120px;
+    height: 120px;
+  }
+}
+

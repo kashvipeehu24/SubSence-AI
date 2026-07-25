@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload | SubSense AI</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #07111f;
+        --panel: #0f1b2d;
+        --text: #f4f7fb;
+        --muted: #92a7c0;
+        --accent: #4f8cff;
+        --accent-2: #63e4c0;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, sans-serif;
+        background: linear-gradient(135deg, #07111f, #101d33);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .navbar {
+        background: rgba(7, 17, 31, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .upload-card {
+        background: rgba(15, 27, 45, 0.85);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 22px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+      }
+
+      .drop-zone {
+        border: 2px dashed rgba(99, 228, 192, 0.35);
+        border-radius: 18px;
+        padding: 2rem;
+        text-align: center;
+        background: rgba(255,255,255,0.03);
+        cursor: pointer;
+      }
+
+      .drop-zone:hover {
+        background: rgba(99, 228, 192, 0.08);
+      }
+
+      .badge-pill {
+        display: inline-block;
+        padding: 0.45rem 0.8rem;
+        background: rgba(99, 228, 192, 0.12);
+        color: var(--accent-2);
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), #6f8fff);
+        border: none;
+      }
+
+      .file-preview {
+        border-radius: 12px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        padding: 0.85rem 1rem;
+        color: var(--muted);
+      }
+
+      .feature-list li {
+        margin-bottom: 0.65rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">SubSense AI</a>
+        <a class="btn btn-outline-light btn-sm" href="dashboard.html">Open Dashboard</a>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-7">
+          <div class="upload-card p-4 p-lg-5">
+            <span class="badge-pill">Secure Upload Workspace</span>
+            <h1 class="mt-3 fw-bold">Upload your financial files to uncover hidden leaks.</h1>
+            <p class="text-muted mt-3">
+              Use statements, CSV files, or financial exports to start your AI-powered analysis.
+            </p>
+
+            <div class="drop-zone mt-4">
+              <div class="mb-3" style="font-size: 2rem;">⬆️</div>
+              <h4 class="fw-semibold">Drag & drop your files here</h4>
+              <p class="text-muted mb-3">CSV, PDF, or text files from your bank or finance apps</p>
+              <input type="file" class="form-control" id="fileInput" />
+            </div>
+
+            <div class="mt-3">
+              <p class="small text-muted mb-2">Selected file</p>
+              <div class="file-preview" id="selectedFile">No file selected yet.</div>
+            </div>
+
+            <button class="btn btn-primary btn-lg mt-4">Run AI Analysis</button>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="upload-card p-4 p-lg-5">
+            <h4 class="fw-semibold">What SubSense AI will detect</h4>
+            <ul class="feature-list mt-3 list-unstyled">
+              <li>• Hidden recurring subscriptions</li>
+              <li>• Duplicate or overlapping services</li>
+              <li>• Silent price increases and renewals</li>
+              <li>• Unnecessary monthly or annual spending</li>
+            </ul>
+
+            <div class="mt-4 p-3 rounded" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+              <strong>Tip:</strong>
+              <p class="text-muted mb-0 mt-2">Upload a sample transaction file or statement to preview the experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const fileInput = document.getElementById('fileInput');
+      const selectedFile = document.getElementById('selectedFile');
+
+      fileInput.addEventListener('change', function () {
+        const file = this.files[0];
+        selectedFile.textContent = file ? file.name : 'No file selected yet.';
+      });
+    </script>
+  </body>
+</html>
