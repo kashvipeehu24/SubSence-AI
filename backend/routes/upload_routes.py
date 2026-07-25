@@ -8,6 +8,7 @@ from flask import Blueprint, current_app, jsonify, request
 
 from backend.input_intelligence.models.transaction import Transaction
 from backend.input_intelligence.parser import parse_input
+from backend.input_intelligence.utils import detect_mime_type
 
 upload_bp = Blueprint("upload", __name__)
 
@@ -122,26 +123,65 @@ def upload() -> Any:
     save_path = upload_dir / uploaded.filename
     uploaded.save(save_path)
 
-    source_type = "csv"
-    suffix = save_path.suffix.lower()
-    if suffix == ".json":
-        source_type = "json"
-    elif suffix == ".pdf":
-        source_type = "pdf"
-    elif suffix in {".txt", ".eml"}:
-        source_type = "email"
+    source_type = detect_mime_type(str(save_path))
+    # Standardize Excel classifications
+    if source_type == "zip":
+        source_type = "excel"
+    
+    supported_formats = {
+        "csv", "sms", "email", "pdf", "json", "excel",
+        "png", "jpeg", "jpg", "webp", "heic", "xls", "xlsx"
+    }
+    
+    if source_type not in supported_formats:
+        # Suffix-based fallback if magic signatures fail (e.g. unknown format)
+        suffix = save_path.suffix.lower()
+        if suffix == ".json":
+            source_type = "json"
+        elif suffix == ".pdf":
+            source_type = "pdf"
+        elif suffix in {".xlsx", ".xls"}:
+            source_type = "excel"
+        elif suffix in {".txt", ".eml"}:
+            source_type = "email"
+        elif suffix in {".png", ".jpeg", ".jpg", ".webp", ".heic"}:
+            source_type = suffix[1:]
+        else:
+            source_type = "csv"
 
-    transactions: List[Transaction] = []
-    if source_type == "json":
-        with save_path.open("r", encoding="utf-8") as handle:
-            payload = json.load(handle)
-        raw_transactions = payload.get("transactions", [])
-        transactions = [Transaction.from_dict(item) for item in raw_transactions]
-    else:
+    import logging
+    logger = logging.getLogger(__name__)
+
+    try:
         transactions = parse_input(str(save_path), source_type)
+    except ValueError as e:
+        err_msg = str(e)
+        logger.error("Parsing failed: %s", err_msg)
+        
+        specific_errors = {
+            "blank image.",
+            "unreadable image.",
+            "corrupted pdf.",
+            "password-protected pdf.",
+            "ocr failure.",
+            "gemini failure.",
+            "no transaction rows detected.",
+            "date column missing.",
+            "amount column missing.",
+            "merchant column missing."
+        }
+        if err_msg.lower() in specific_errors or "exceeds limit" in err_msg.lower():
+            return jsonify({"error": err_msg}), 400
+            
+        if "no transaction rows" in err_msg.lower():
+            return jsonify({"error": "No transaction rows detected."}), 400
+        return jsonify({"error": "Unable to parse uploaded file"}), 400
+    except Exception as e:
+        logger.error("Unexpected error in upload pipeline: %s", str(e))
+        return jsonify({"error": "Unable to parse uploaded file"}), 400
 
     if not transactions:
-        return jsonify({"error": "Unable to parse the uploaded file"}), 400
+        return jsonify({"error": "No transaction rows detected."}), 400
 
     financial_analysis = _build_financial_analysis(transactions)
     ai_response = _build_ai_response(financial_analysis)

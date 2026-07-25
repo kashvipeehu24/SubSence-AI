@@ -17,3 +17,6 @@ reportlab==4.2.5
 
 gunicorn==23.0.0
 rapidfuzz==3.9.4
+easyocr==1.7.1
+pillow-heif==0.21.0
+pypdfium2==4.30.0

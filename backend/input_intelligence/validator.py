@@ -27,11 +27,11 @@ def validate_file_exists(path: str) -> Dict[str, Any]:
 
 
 def validate_extension(path: str) -> Dict[str, Any]:
-    """Validates if the file has a supported extension (.csv, .pdf, .txt)."""
+    """Validates if the file has a supported extension (.csv, .pdf, .txt, .json, .xlsx, .xls, .png, .jpeg, .jpg, .webp, .heic)."""
     if not path or not isinstance(path, str):
         return {"valid": False, "errors": ["Invalid file path type."], "warnings": []}
     _, ext = os.path.splitext(path.lower())
-    supported = {".csv", ".pdf", ".txt"}
+    supported = {".csv", ".pdf", ".txt", ".json", ".xlsx", ".xls", ".png", ".jpeg", ".jpg", ".webp", ".heic"}
     if ext not in supported:
         return {
             "valid": False,
@@ -95,17 +95,22 @@ def validate_pdf(path: str) -> Dict[str, Any]:
     try:
         with open(path, "rb") as f:
             reader = PdfReader(f)
+            if reader.is_encrypted:
+                return {"valid": False, "errors": ["Password-protected PDF."], "warnings": []}
             num_pages = len(reader.pages)
             f.seek(0)
             header = f.read(5)
             if header != b"%PDF-":
-                return {"valid": False, "errors": ["File does not have a valid PDF header."], "warnings": []}
+                return {"valid": False, "errors": ["Corrupted PDF."], "warnings": []}
         warnings = []
         if num_pages == 0:
-            warnings.append("PDF contains 0 pages.")
+            return {"valid": False, "errors": ["Corrupted PDF."], "warnings": []}
         return {"valid": True, "errors": [], "warnings": warnings}
     except Exception as e:
-        return {"valid": False, "errors": [f"Invalid PDF structure or corrupted: {str(e)}"], "warnings": []}
+        err_str = str(e).lower()
+        if "encrypted" in err_str or "password" in err_str or "decrypt" in err_str:
+            return {"valid": False, "errors": ["Password-protected PDF."], "warnings": []}
+        return {"valid": False, "errors": ["Corrupted PDF."], "warnings": []}
 
 
 def validate_text(path: str) -> Dict[str, Any]:
@@ -119,6 +124,52 @@ def validate_text(path: str) -> Dict[str, Any]:
         return {"valid": True, "errors": [], "warnings": []}
     except (UnicodeDecodeError, IOError) as e:
         return {"valid": False, "errors": [f"Invalid text file or decoding error: {str(e)}"], "warnings": []}
+
+
+def validate_json(path: str) -> Dict[str, Any]:
+    """Validates if the file is a structurally valid JSON file."""
+    exists_res = validate_file_exists(path)
+    if not exists_res["valid"]:
+        return exists_res
+    try:
+        import json
+        with open(path, "r", encoding="utf-8") as f:
+            json.load(f)
+        return {"valid": True, "errors": [], "warnings": []}
+    except Exception as e:
+        return {"valid": False, "errors": [f"Invalid JSON structure: {str(e)}"], "warnings": []}
+
+
+def validate_excel(path: str) -> Dict[str, Any]:
+    """Validates if the file is a structurally valid Excel file."""
+    exists_res = validate_file_exists(path)
+    if not exists_res["valid"]:
+        return exists_res
+    try:
+        import openpyxl
+        wb = openpyxl.load_workbook(path, read_only=True)
+        wb.close()
+        return {"valid": True, "errors": [], "warnings": []}
+    except Exception as e:
+        return {"valid": False, "errors": [f"Invalid Excel structure: {str(e)}"], "warnings": []}
+
+
+def validate_image(path: str) -> Dict[str, Any]:
+    """Validates if the file is a valid non-blank image file."""
+    exists_res = validate_file_exists(path)
+    if not exists_res["valid"]:
+        return exists_res
+    try:
+        from PIL import Image
+        import numpy as np
+        with Image.open(path) as img:
+            arr = np.array(img.convert("L"))
+            std_dev = np.std(arr)
+            if std_dev < 5.0:
+                return {"valid": False, "errors": ["Blank image."], "warnings": []}
+        return {"valid": True, "errors": [], "warnings": []}
+    except Exception as e:
+        return {"valid": False, "errors": ["Unreadable image."], "warnings": []}
 
 
 def validate_upload(path: str) -> Dict[str, Any]:
@@ -139,6 +190,12 @@ def validate_upload(path: str) -> Dict[str, Any]:
         type_res = validate_pdf(path)
     elif ext == ".txt":
         type_res = validate_text(path)
+    elif ext == ".json":
+        type_res = validate_json(path)
+    elif ext in {".xlsx", ".xls"}:
+        type_res = validate_excel(path)
+    elif ext in {".png", ".jpeg", ".jpg", ".webp", ".heic"}:
+        type_res = validate_image(path)
     else:
         type_res = {"valid": False, "errors": [f"Unsupported extension: {ext}"], "warnings": []}
     warnings = ext_res.get("warnings", []) + size_res.get("warnings", []) + type_res.get("warnings", [])

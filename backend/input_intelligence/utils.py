@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
@@ -112,12 +113,8 @@ def safe_float(value: Any, default: float = 0.0) -> float:
 def parse_date(date_string: Optional[str]) -> Optional[str]:
     """Parses a date string in various common formats and converts it to ISO format (YYYY-MM-DD).
 
-    Supported formats:
-        - YYYY-MM-DD
-        - DD/MM/YYYY
-        - DD-MM-YYYY
-        - DD Mon YYYY (e.g. 15 Jul 2026)
-        - DD Month YYYY (e.g. 15 July 2026)
+    Supported formats include YYYY-MM-DD, DD/MM/YYYY, MM/DD/YYYY, DD-MM-YYYY, DD Mon YYYY,
+    epoch timestamps, and ISO date-times.
 
     Args:
         date_string: The string representing the date. Can be None.
@@ -128,13 +125,43 @@ def parse_date(date_string: Optional[str]) -> Optional[str]:
     if not date_string:
         return None
 
-    cleaned_date = clean_text(date_string)
+    cleaned_date = clean_text(str(date_string))
+    if not cleaned_date:
+        return None
+
+    # Handle ISO DateTimes or dates with space-separated times
+    if "T" in cleaned_date:
+        cleaned_date = cleaned_date.split("T")[0]
+    elif " " in cleaned_date:
+        parts = cleaned_date.split()
+        if len(parts) > 1 and ":" in parts[-1]:
+            cleaned_date = " ".join(parts[:-1])
+
+    cleaned_date = cleaned_date.strip()
+
+    # Handle epoch timestamps
+    if re.match(r"^\d+$", cleaned_date):
+        try:
+            val = int(cleaned_date)
+            if len(cleaned_date) == 13:
+                val = val // 1000
+            return datetime.fromtimestamp(val).strftime("%Y-%m-%d")
+        except (ValueError, OSError, OverflowError):
+            pass
+
     formats = [
         "%Y-%m-%d",
         "%d/%m/%Y",
+        "%m/%d/%Y",
         "%d-%m-%Y",
+        "%m-%d-%Y",
         "%d %b %Y",
         "%d %B %Y",
+        "%d-%b-%Y",
+        "%d-%B-%Y",
+        "%b %d, %Y",
+        "%B %d, %Y",
+        "%Y%m%d",
     ]
     for fmt in formats:
         try:
@@ -212,3 +239,94 @@ def safe_json_load(json_string: Optional[str]) -> Optional[Union[Dict[str, Any],
         return None
     except (json.JSONDecodeError, TypeError):
         return None
+
+
+# Global stats container to allow parsers to report metrics back to the orchestrator
+_latest_stats = {
+    "extracted": 0,
+    "validated": 0,
+    "rejected": 0
+}
+
+# Shared container to pass raw/OCR text back to orchestrator for Gemini fallback
+_latest_extracted_text = ""
+
+
+def detect_mime_type(file_path: str) -> str:
+    """Detects the file classification (MIME-like key) by checking the magic byte signatures.
+
+    Args:
+        file_path: Absolute path to the statement file.
+
+    Returns:
+        str: Classification label ('pdf', 'png', 'jpeg', 'webp', 'heic', 'xlsx', 'xls',
+             'json', 'csv', 'txt', or 'unknown').
+    """
+    try:
+        if not file_path or not os.path.exists(file_path):
+            return "unknown"
+
+        with open(file_path, "rb") as f:
+            header = f.read(2048)
+        if not header:
+            return "unknown"
+
+        # 1. PDF signature check
+        if header.startswith(b"%PDF-"):
+            return "pdf"
+
+        # 2. PNG signature check
+        if header.startswith(b"\x89PNG\r\n"):
+            return "png"
+
+        # 3. JPEG/JPG signature check
+        if header.startswith(b"\xff\xd8\xff"):
+            return "jpeg"
+
+        # 4. WEBP signature check
+        if header.startswith(b"RIFF") and len(header) >= 12 and header[8:12] == b"WEBP":
+            return "webp"
+
+        # 5. HEIC signature check
+        if len(header) >= 12 and header[4:8] == b"ftyp" and header[8:12] in {b"heic", b"mif1", b"heix", b"msf1"}:
+            return "heic"
+
+        # 6. XLS (OLECF Format) signature check
+        if header.startswith(b"\xd0\xcf\x11\xe0"):
+            return "xls"
+
+        # 7. XLSX (ZIP Format) signature check
+        if header.startswith(b"PK\x03\x04"):
+            _, ext = os.path.splitext(file_path.lower())
+            if ext in {".xlsx", ".xls"}:
+                return "xlsx"
+            return "zip"
+
+        # 8. JSON check
+        decoded_start = ""
+        for encoding in ["utf-8", "utf-8-sig", "latin1"]:
+            try:
+                decoded_start = header[:100].decode(encoding).strip()
+                break
+            except Exception:
+                continue
+        if decoded_start.startswith("{") or decoded_start.startswith("["):
+            return "json"
+
+        # 9. Text Decodability Check (TXT / CSV)
+        try:
+            header.decode("utf-8")
+            _, ext = os.path.splitext(file_path.lower())
+            if ext == ".csv":
+                return "csv"
+            if ext in {".txt", ".eml"}:
+                return "txt"
+            if "," in decoded_start or ";" in decoded_start or "\t" in decoded_start:
+                return "csv"
+            return "txt"
+        except UnicodeDecodeError:
+            pass
+
+        return "binary"
+    except Exception:
+        return "unknown"
