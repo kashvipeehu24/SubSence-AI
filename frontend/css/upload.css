@@ -1,0 +1,44 @@
+.upload-card {
+  background: rgba(15, 27, 45, 0.85);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.drop-zone {
+  border: 2px dashed rgba(99, 228, 192, 0.35);
+  border-radius: 18px;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drop-zone:hover {
+  background: rgba(99, 228, 192, 0.08);
+  transform: translateY(-2px);
+}
+
+.badge-pill {
+  display: inline-block;
+  padding: 0.45rem 0.8rem;
+  background: rgba(99, 228, 192, 0.12);
+  color: #63e4c0;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.file-preview {
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.85rem 1rem;
+  color: #92a7c0;
+}
+
+.feature-list li {
+  margin-bottom: 0.65rem;
+  color: #92a7c0;
+}
