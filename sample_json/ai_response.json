@@ -1,70 +1,66 @@
 {
   "report_metadata": {
-    "generated_at": "2026-07-25T12:15:00Z",
+    "generated_at": "2026-07-25T12:00:00Z",
     "ai_model": "Gemini",
     "version": "1.0"
   },
-
   "financial_summary": {
-    "overall_health": "Good",
-    "summary": "Your spending is generally under control, but you have duplicate subscriptions and recent subscription price increases."
+    "overall_health": "Medium Risk (Grade B)",
+    "summary": "Your financial health score is 78/100. While overall subscription management is moderate, you have actionable opportunities to save up to \u20b9897 per month by eliminating duplicate music subscriptions and managing recent price increases."
   },
-
   "financial_health_score_explanation": {
     "score": 78,
     "grade": "B",
-    "reason": "Your score is reduced due to duplicate subscriptions and increasing recurring expenses."
+    "reason": "Your score reflects a solid spending structure, but it is lowered due to overlapping subscriptions in the Music category and a 30.06% price hike on Netflix."
   },
-
   "monthly_summary": {
     "total_spent": 8450,
     "subscriptions": 1767,
     "potential_savings": 897
   },
-
   "yearly_summary": {
     "total_spent": 101400,
     "subscription_cost": 21204,
     "potential_savings": 10764
   },
-
   "duplicate_subscription_explanations": [
     {
       "category": "Music",
-      "message": "You are paying for multiple music streaming services. Consider cancelling one."
+      "services": [
+        "Spotify",
+        "YouTube Music"
+      ],
+      "explanation": "You are paying for both Spotify and YouTube Music under the Music category, spending an extra \u20b9248 per month (\u20b92,976 yearly) on overlapping services."
     }
   ],
-
   "price_hike_explanations": [
     {
       "merchant": "Netflix",
-      "message": "Netflix increased its monthly price from ₹499 to ₹649."
+      "explanation": "Netflix subscription price increased by \u20b9150 (30.06%), moving from \u20b9499 to \u20b9649 per month."
     }
   ],
-
   "recurring_subscription_explanations": [
     {
-      "merchant": "Spotify",
-      "message": "Spotify renews every month."
-    }
-  ],
-
-  "savings_suggestions": [
-    "Cancel duplicate music subscriptions.",
-    "Review unused streaming services.",
-    "Monitor subscription renewals monthly."
-  ],
-
-  "action_items": [
-    "Cancel YouTube Music.",
-    "Review Netflix plan.",
-    "Track monthly subscriptions."
-  ],
-
-  "dashboard_recommendations": [
+      "merchant": "Netflix",
+      "explanation": "Active monthly subscription costing \u20b9649 per month (\u20b97,788 annually)."
+    },
     {
-      "title": "Save ₹897/month",
-      "priority": "High"
+      "merchant": "Spotify",
+      "explanation": "Active monthly subscription costing \u20b9119 per month (\u20b91,428 annually)."
     }
+  ],
+  "savings_suggestions": [
+    "Choose one primary music platform between Spotify and YouTube Music to save \u20b9248 monthly.",
+    "Evaluate whether the higher Netflix tier of \u20b9649/month is fully utilized or if a lower tier/cancellation fits better."
+  ],
+  "action_items": [
+    "Cancel duplicate music subscription service.",
+    "Review usage for Netflix following the recent price increase.",
+    "Track ongoing recurring payments to prevent unexpected price adjustments."
+  ],
+  "dashboard_recommendations": [
+    "Cancel duplicate music subscriptions.",
+    "Review streaming services you rarely use.",
+    "Monitor recent subscription price hikes."
   ]
 }
