@@ -2,92 +2,136 @@ from recurring_detector import detect_recurring_subscriptions
 import json
 
 
-BILL_CATEGORIES = {
-    "Utilities",
-    "Electricity",
-    "Water",
-    "Gas",
-    "Internet",
-    "Mobile",
-    "Insurance"
-}
-
 
 def detect_price_hikes(transactions):
     """
-    Detect silent price increases in recurring subscriptions.
-
-    Args:
-        transactions (list): Standardized transaction list.
+    Detect subscription price increases.
 
     Returns:
-        list: Detected price hikes.
+        List of price hike records.
     """
 
-    recurring_services = detect_recurring_subscriptions(transactions)
+
+
+    recurring_data = detect_recurring_subscriptions(
+        transactions
+    )
+
+
+    subscriptions = recurring_data.get(
+        "recurring_subscriptions",
+        []
+    )
+
 
     price_hikes = []
 
-    for service in recurring_services:
 
-        category = service["transactions"][0]["category"]
 
-        # Ignore recurring bills
-        if category in BILL_CATEGORIES:
+    for service in subscriptions:
+
+
+        txns = service.get(
+            "transactions",
+            []
+        )
+
+
+        if len(txns) < 2:
             continue
 
-        merchant = service["merchant"]
 
-        # Get this merchant's transactions from original data
-        merchant_txns = [
-            t for t in transactions
-            if t["merchant"] == merchant
-        ]
 
-        # Sort by date
-        merchant_txns.sort(
+        # Sort transactions by date
+
+        txns.sort(
             key=lambda x: x["date"]
         )
 
-        amounts = [
-            t["amount"]
-            for t in merchant_txns
-        ]
 
-        # Compare first and latest amount
-        old_price = amounts[0]
-        new_price = amounts[-1]
+
+        old_price = txns[0].get(
+            "amount",
+            0
+        )
+
+
+        new_price = txns[-1].get(
+            "amount",
+            0
+        )
+
+
+
+        # Detect increase
 
         if new_price > old_price:
 
+
             increase_percent = (
-                (new_price - old_price) / old_price
+                (new_price - old_price)
+                /
+                old_price
             ) * 100
 
-            price_hikes.append({
-                "merchant": merchant,
-                "old_price": round(old_price, 2),
-                "new_price": round(new_price, 2),
-                "increase_percent": round(increase_percent, 2)
-            })
+
+
+            price_hikes.append(
+                {
+                    "merchant": service.get(
+                        "merchant",
+                        ""
+                    ),
+
+                    "old_price": round(
+                        old_price,
+                        2
+                    ),
+
+                    "new_price": round(
+                        new_price,
+                        2
+                    ),
+
+                    "increase_percent": round(
+                        increase_percent,
+                        2
+                    )
+                }
+            )
+
+
 
     return price_hikes
 
 
-# ---------------- TEST ----------------
+
+
+# TEST
 
 if __name__ == "__main__":
 
-    with open("sample_transactions.json", "r") as file:
+
+    with open(
+        "sample_transactions.json",
+        "r"
+    ) as file:
+
         transactions = json.load(file)
 
-    hikes = detect_price_hikes(transactions)
 
-    print("\n===== Price Hikes =====\n")
 
-    if not hikes:
-        print("No price hikes detected.")
+    hikes = detect_price_hikes(
+        transactions
+    )
 
-    else:
-        for hike in hikes:
-            print(hike)
+
+
+    print(
+        "\n===== Price Hikes =====\n"
+    )
+
+
+    for item in hikes:
+
+        print(item)
