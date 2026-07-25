@@ -1,0 +1,73 @@
+{
+  "user": {
+    "name": "Demo User"
+  },
+
+  "financial_health": {
+    "score": 78,
+    "grade": "B"
+  },
+
+  "cards": {
+    "monthly_spending": 8450,
+    "yearly_spending": 101400,
+    "monthly_savings": 897,
+    "yearly_savings": 10764
+  },
+
+  "charts": {
+    "category_breakdown": [
+      {
+        "category": "Shopping",
+        "amount": 2499
+      },
+      {
+        "category": "Video Streaming",
+        "amount": 649
+      },
+      {
+        "category": "Music",
+        "amount": 119
+      }
+    ]
+  },
+
+  "subscriptions": [
+    {
+      "merchant": "Netflix",
+      "monthly_cost": 649
+    },
+    {
+      "merchant": "Spotify",
+      "monthly_cost": 119
+    }
+  ],
+
+  "duplicate_subscriptions": [
+    {
+      "category": "Music",
+      "services": [
+        "Spotify",
+        "YouTube Music"
+      ]
+    }
+  ],
+
+  "price_hikes": [
+    {
+      "merchant": "Netflix",
+      "increase": 150
+    }
+  ],
+
+  "recommendations": [
+    "Cancel duplicate subscriptions.",
+    "Review price hikes.",
+    "Save ₹897 every month."
+  ],
+
+  "action_items": [
+    "Cancel YouTube Music",
+    "Review Netflix Plan"
+  ]
+}

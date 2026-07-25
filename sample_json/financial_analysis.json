@@ -1,0 +1,86 @@
+{
+  "analysis_metadata": {
+    "generated_at": "2026-07-25T12:00:00Z",
+    "currency": "INR",
+    "analysis_period": {
+      "start_date": "2026-01-01",
+      "end_date": "2026-07-25"
+    }
+  },
+
+  "financial_health": {
+    "score": 78,
+    "grade": "B",
+    "risk_level": "Medium"
+  },
+
+  "spending_summary": {
+    "monthly_spending": 8450,
+    "yearly_spending": 101400,
+    "subscription_spending_monthly": 1767,
+    "subscription_spending_yearly": 21204
+  },
+
+  "category_breakdown": [
+    {
+      "category": "Video Streaming",
+      "monthly_amount": 649
+    },
+    {
+      "category": "Music",
+      "monthly_amount": 119
+    },
+    {
+      "category": "Shopping",
+      "monthly_amount": 2499
+    }
+  ],
+
+  "recurring_subscriptions": [
+    {
+      "merchant": "Netflix",
+      "monthly_cost": 649,
+      "annual_cost": 7788,
+      "billing_cycle": "Monthly"
+    },
+    {
+      "merchant": "Spotify",
+      "monthly_cost": 119,
+      "annual_cost": 1428,
+      "billing_cycle": "Monthly"
+    }
+  ],
+
+  "duplicate_subscriptions": [
+    {
+      "category": "Music",
+      "services": [
+        "Spotify",
+        "YouTube Music"
+      ],
+      "monthly_cost": 248,
+      "annual_cost": 2976
+    }
+  ],
+
+  "price_hikes": [
+    {
+      "merchant": "Netflix",
+      "previous_price": 499,
+      "current_price": 649,
+      "increase": 150,
+      "percentage": 30.06
+    }
+  ],
+
+  "potential_savings": {
+    "monthly": 897,
+    "yearly": 10764
+  },
+
+  "recommendations": [
+    "Cancel duplicate music subscriptions.",
+    "Review streaming services you rarely use.",
+    "Monitor recent subscription price hikes."
+  ]
+}

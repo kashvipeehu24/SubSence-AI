@@ -1,0 +1,70 @@
+{
+  "report_metadata": {
+    "generated_at": "2026-07-25T12:15:00Z",
+    "ai_model": "Gemini",
+    "version": "1.0"
+  },
+
+  "financial_summary": {
+    "overall_health": "Good",
+    "summary": "Your spending is generally under control, but you have duplicate subscriptions and recent subscription price increases."
+  },
+
+  "financial_health_score_explanation": {
+    "score": 78,
+    "grade": "B",
+    "reason": "Your score is reduced due to duplicate subscriptions and increasing recurring expenses."
+  },
+
+  "monthly_summary": {
+    "total_spent": 8450,
+    "subscriptions": 1767,
+    "potential_savings": 897
+  },
+
+  "yearly_summary": {
+    "total_spent": 101400,
+    "subscription_cost": 21204,
+    "potential_savings": 10764
+  },
+
+  "duplicate_subscription_explanations": [
+    {
+      "category": "Music",
+      "message": "You are paying for multiple music streaming services. Consider cancelling one."
+    }
+  ],
+
+  "price_hike_explanations": [
+    {
+      "merchant": "Netflix",
+      "message": "Netflix increased its monthly price from ₹499 to ₹649."
+    }
+  ],
+
+  "recurring_subscription_explanations": [
+    {
+      "merchant": "Spotify",
+      "message": "Spotify renews every month."
+    }
+  ],
+
+  "savings_suggestions": [
+    "Cancel duplicate music subscriptions.",
+    "Review unused streaming services.",
+    "Monitor subscription renewals monthly."
+  ],
+
+  "action_items": [
+    "Cancel YouTube Music.",
+    "Review Netflix plan.",
+    "Track monthly subscriptions."
+  ],
+
+  "dashboard_recommendations": [
+    {
+      "title": "Save ₹897/month",
+      "priority": "High"
+    }
+  ]
+}
