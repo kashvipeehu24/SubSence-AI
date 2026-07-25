@@ -1,0 +1,211 @@
+{
+    "financial_health_score": 67,
+    "risk_level": "Medium",
+    "financial_risks": [
+        {
+            "risk": "subscription_price_increase",
+            "severity": "Medium"
+        },
+        {
+            "risk": "high_cost_subscription",
+            "severity": "High"
+        }
+    ],
+    "spending_categories": {
+        "Entertainment": 49.97,
+        "Music": 29.97,
+        "Software": 89.97,
+        "Utilities": 250.3
+    },
+    "spending_trends": {
+        "monthly_breakdown": {
+            "2025-01": 138.42,
+            "2025-02": 140.07,
+            "2025-03": 141.72
+        },
+        "trend": "Increasing"
+    },
+    "recommendations": [
+        {
+            "merchant": "Adobe",
+            "action": "Consider cancelling or switching plan",
+            "reason": "High cost subscription",
+            "monthly_saving": 29.99,
+            "yearly_saving": 359.88
+        },
+        {
+            "merchant": "Netflix",
+            "action": "Review subscription pricing",
+            "reason": "Subscription price increased",
+            "increase_percent": 12.51
+        }
+    ],
+    "upcoming_renewals": [
+        {
+            "merchant": "Netflix",
+            "last_payment_date": "2025-03-05",
+            "next_payment_date": "2025-04-04",
+            "expected_amount": 17.99
+        },
+        {
+            "merchant": "Spotify",
+            "last_payment_date": "2025-03-10",
+            "next_payment_date": "2025-04-09",
+            "expected_amount": 9.99
+        },
+        {
+            "merchant": "Adobe",
+            "last_payment_date": "2025-03-15",
+            "next_payment_date": "2025-04-14",
+            "expected_amount": 29.99
+        }
+    ],
+    "transaction_anomalies": [],
+    "unused_subscriptions": [],
+    "subscription_cost_analysis": {
+        "monthly_cost": 56.64,
+        "annual_cost": 679.68
+    },
+    "recurring_subscriptions": [
+        {
+            "merchant": "Netflix",
+            "frequency": "Monthly",
+            "occurrences": 3,
+            "average_amount": 16.66,
+            "transactions": [
+                {
+                    "transaction_id": "TXN001",
+                    "date": "2025-01-05",
+                    "merchant": "Netflix",
+                    "amount": 15.99,
+                    "type": "Debit",
+                    "category": "Entertainment"
+                },
+                {
+                    "transaction_id": "TXN002",
+                    "date": "2025-02-05",
+                    "merchant": "Netflix",
+                    "amount": 15.99,
+                    "type": "Debit",
+                    "category": "Entertainment"
+                },
+                {
+                    "transaction_id": "TXN003",
+                    "date": "2025-03-05",
+                    "merchant": "Netflix",
+                    "amount": 17.99,
+                    "type": "Debit",
+                    "category": "Entertainment"
+                }
+            ]
+        },
+        {
+            "merchant": "Spotify",
+            "frequency": "Monthly",
+            "occurrences": 3,
+            "average_amount": 9.99,
+            "transactions": [
+                {
+                    "transaction_id": "TXN004",
+                    "date": "2025-01-10",
+                    "merchant": "Spotify",
+                    "amount": 9.99,
+                    "type": "Debit",
+                    "category": "Music"
+                },
+                {
+                    "transaction_id": "TXN005",
+                    "date": "2025-02-10",
+                    "merchant": "Spotify",
+                    "amount": 9.99,
+                    "type": "Debit",
+                    "category": "Music"
+                },
+                {
+                    "transaction_id": "TXN006",
+                    "date": "2025-03-10",
+                    "merchant": "Spotify",
+                    "amount": 9.99,
+                    "type": "Debit",
+                    "category": "Music"
+                }
+            ]
+        },
+        {
+            "merchant": "Adobe",
+            "frequency": "Monthly",
+            "occurrences": 3,
+            "average_amount": 29.99,
+            "transactions": [
+                {
+                    "transaction_id": "TXN007",
+                    "date": "2025-01-15",
+                    "merchant": "Adobe",
+                    "amount": 29.99,
+                    "type": "Debit",
+                    "category": "Software"
+                },
+                {
+                    "transaction_id": "TXN008",
+                    "date": "2025-02-15",
+                    "merchant": "Adobe",
+                    "amount": 29.99,
+                    "type": "Debit",
+                    "category": "Software"
+                },
+                {
+                    "transaction_id": "TXN009",
+                    "date": "2025-03-15",
+                    "merchant": "Adobe",
+                    "amount": 29.99,
+                    "type": "Debit",
+                    "category": "Software"
+                }
+            ]
+        }
+    ],
+    "recurring_bills": [
+        {
+            "merchant": "Electricity Board",
+            "category": "Utilities",
+            "monthly_amount": 83.43
+        }
+    ],
+    "duplicate_subscriptions": [],
+    "price_hikes": [
+        {
+            "merchant": "Netflix",
+            "old_price": 15.99,
+            "new_price": 17.99,
+            "increase_percent": 12.51
+        }
+    ],
+    "free_trial_conversions": [],
+    "high_cost_subscriptions": [
+        {
+            "merchant": "Adobe",
+            "monthly_cost": 29.99,
+            "threshold": 20.0,
+            "category": "Software"
+        }
+    ],
+    "monthly_spending": 56.64,
+    "yearly_spending": 679.68,
+    "potential_savings": {
+        "monthly_savings": 29.99,
+        "yearly_savings": 359.88,
+        "subscriptions_to_review": [
+            {
+                "merchant": "Adobe",
+                "monthly_cost": 29.99,
+                "threshold": 20.0,
+                "category": "Software"
+            }
+        ]
+    },
+    "future_projection": {
+        "current_yearly_spending": 679.68,
+        "projected_yearly_spending": 713.66,
+        "assumed_growth_rate": "5%"
+    }
+}
