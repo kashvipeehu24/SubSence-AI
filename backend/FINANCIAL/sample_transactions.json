@@ -1,0 +1,98 @@
+[
+    {
+        "transaction_id": "TXN001",
+        "date": "2025-01-05",
+        "merchant": "Netflix",
+        "amount": 15.99,
+        "type": "Debit",
+        "category": "Entertainment"
+    },
+    {
+        "transaction_id": "TXN002",
+        "date": "2025-02-05",
+        "merchant": "Netflix",
+        "amount": 15.99,
+        "type": "Debit",
+        "category": "Entertainment"
+    },
+    {
+        "transaction_id": "TXN003",
+        "date": "2025-03-05",
+        "merchant": "Netflix",
+        "amount": 17.99,
+        "type": "Debit",
+        "category": "Entertainment"
+    },
+    {
+        "transaction_id": "TXN004",
+        "date": "2025-01-10",
+        "merchant": "Spotify",
+        "amount": 9.99,
+        "type": "Debit",
+        "category": "Music"
+    },
+    {
+        "transaction_id": "TXN005",
+        "date": "2025-02-10",
+        "merchant": "Spotify",
+        "amount": 9.99,
+        "type": "Debit",
+        "category": "Music"
+    },
+    {
+        "transaction_id": "TXN006",
+        "date": "2025-03-10",
+        "merchant": "Spotify",
+        "amount": 9.99,
+        "type": "Debit",
+        "category": "Music"
+    },
+    {
+        "transaction_id": "TXN007",
+        "date": "2025-01-15",
+        "merchant": "Adobe",
+        "amount": 29.99,
+        "type": "Debit",
+        "category": "Software"
+    },
+    {
+        "transaction_id": "TXN008",
+        "date": "2025-02-15",
+        "merchant": "Adobe",
+        "amount": 29.99,
+        "type": "Debit",
+        "category": "Software"
+    },
+    {
+        "transaction_id": "TXN009",
+        "date": "2025-03-15",
+        "merchant": "Adobe",
+        "amount": 29.99,
+        "type": "Debit",
+        "category": "Software"
+    },
+    {
+    "transaction_id": "TXN010",
+    "date": "2025-01-12",
+    "merchant": "Electricity Board",
+    "amount": 82.45,
+    "type": "Debit",
+    "category": "Utilities"
+    },
+    {
+    "transaction_id": "TXN011",
+    "date": "2025-02-12",
+    "merchant": "Electricity Board",
+    "amount": 84.10,
+    "type": "Debit",
+    "category": "Utilities"
+    },
+    {
+    "transaction_id": "TXN012",
+    "date": "2025-03-12",
+    "merchant": "Electricity Board",
+    "amount": 83.75,
+    "type": "Debit",
+    "category": "Utilities"
+    }
+]

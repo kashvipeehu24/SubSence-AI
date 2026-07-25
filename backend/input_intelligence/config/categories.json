@@ -1,0 +1,29 @@
+{
+  "categories": {
+    "Video Streaming": {
+      "merchants": ["netflix", "prime video", "disney", "hbo", "youtube premium"],
+      "keywords": ["netflix", "prime video", "subscription", "streaming"]
+    },
+    "Music Streaming": {
+      "merchants": ["spotify", "apple music", "youtube music", "gaana", "jiosaavn"],
+      "keywords": ["spotify", "music", "audio", "podcast"]
+    },
+    "Shopping": {
+      "merchants": ["amazon", "flipkart", "walmart", "target", "ebay"],
+      "keywords": ["shopping", "retail", "store", "buy", "marketplace"]
+    },
+    "Food & Dining": {
+      "merchants": ["zomato", "swiggy", "ubereats", "starbucks", "mcdonalds"],
+      "keywords": ["restaurant", "cafe", "food", "dining", "meal", "coffee"]
+    },
+    "Utilities": {
+      "merchants": ["electricity", "water", "gas", "mobile bill", "broadband"],
+      "keywords": ["bill", "power", "utility", "internet", "broadband", "mobile"]
+    },
+    "Travel": {
+      "merchants": ["uber", "ola", "lyft", "airbnb", "irctc", "flight"],
+      "keywords": ["ride", "cab", "taxi", "hotel", "flight", "ticket", "travel"]
+    }
+  },
+  "default_category": "Other"
+}
