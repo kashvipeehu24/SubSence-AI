@@ -1,4 +1,4 @@
-# 🚀 SubSence AI
+# 🚀 SubSense AI
 [![Build](https://github.com/kashvipeehu24/SubSence-AI/actions/workflows/ci.yml/badge.svg)](https://github.com/kashvipeehu24/SubSence-AI/actions/workflows/ci.yml)
 [![License](https://img.shields.io/github/license/kashvipeehu24/SubSence-AI)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)](https://python.org)
